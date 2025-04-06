@@ -1,0 +1,14 @@
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  application:
+    name: autohub-clients-api
+  profiles:
+    active: ${ENVIRONMENT:local}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_6wx59i0oc
+springdoc:
+  default-property-naming-strategy: snake_case

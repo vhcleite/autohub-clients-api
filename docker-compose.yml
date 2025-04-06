@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack_revenda
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=dynamodb
+      - DEBUG=0
+      - DATA_DIR=/var/lib/localstack/data
+      - DYNAMODB_SHARE_DB=1    # Recomendado
+    volumes:
+      # Monta o volume nomeado 'localstack_data' em '/var/lib/localstack' dentro do container
+      - localstack_data:/var/lib/localstack
+      # Monta o seu diretório local 'localstack/init' contendo setup.sh
+      # no diretório onde LocalStack procura scripts de inicialização
+      - ./localstack/init:/etc/localstack/init/ready.d
+      # Manter o socket do docker pode ser necessário para alguns serviços avançados (mas talvez não para DynamoDB apenas)
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+# Define o volume nomeado que será gerenciado pelo Docker
+volumes:
+  localstack_data:

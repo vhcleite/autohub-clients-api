@@ -1,0 +1,10 @@
+aws:
+  region: us-east-1
+  dynamodb:
+    endpoint: http://localhost:4566
+  credentials:
+    accessKey: test
+    secretKey: test
+
+dynamodb:
+  table-name: VehicleResaleUsers-Local
